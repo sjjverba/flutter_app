@@ -6,11 +6,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage ('Download lcov converter') {
-            steps {
-                sh "curl -O https://raw.githubusercontent.com/eriwen/lcov-to-cobertura-xml/master/lcov_cobertura/lcov_cobertura.py"
-            }
-        }
         stage ('Flutter Doctor') {
             steps {
                 sh "flutter doctor"
