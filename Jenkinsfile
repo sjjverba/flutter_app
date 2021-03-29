@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('Flutter Doctor') {
             steps {
-                bat "echo test"
+                bat "flutter doctor"
             }
         }
         stage('Test') {
