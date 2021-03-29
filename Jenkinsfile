@@ -22,7 +22,7 @@ pipeline {
             }
             post {
                 always {
-                    bat "python3 lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml"
+                    bat "py lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml"
                     step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage.xml'])
                 }
             }
