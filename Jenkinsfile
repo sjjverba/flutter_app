@@ -13,18 +13,18 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh "flutter test --coverage"
+                bat "flutter test --coverage"
             }
             post {
                 always {
-                    sh "python3 lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml"
+                    bat "python3 lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml"
                     step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage.xml'])
                 }
             }
         }
         stage('Run Analyzer') {
             steps {
-                sh "dartanalyzer --options analysis_options.yaml ."
+                bat "dartanalyzer --options analysis_options.yaml ."
             }
         }
     }
