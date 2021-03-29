@@ -2,7 +2,7 @@ pipeline {
     agent any
 	environment
 	{
-		PATH="C:\flutter_windows_2.0.3-stable\flutter\bin"
+		PATH="C:\flutter_windows_2.0.3-stable\flutter\bin;C:\Windows\System32;C:\Windows\System32\WindowsPowerShell\v1.0"
 	}
     stages {
         stage ('Checkout') {
