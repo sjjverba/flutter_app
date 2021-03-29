@@ -27,10 +27,6 @@ pipeline {
                 }
             }
         }
-        stage('Run Analyzer') {
-            steps {
-                bat "dartanalyzer --options analysis_options.yaml ."
-            }
-        }
+       
     }
 }
