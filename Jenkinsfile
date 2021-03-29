@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+	environment
+	{
+		PATH="C:\flutter_windows_2.0.3-stable\flutter\bin"
+	}
     stages {
         stage ('Checkout') {
             steps {
