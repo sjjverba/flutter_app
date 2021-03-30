@@ -7,12 +7,28 @@ pipeline {
 				publishHTML (target : [allowMissing: false,
 				 alwaysLinkToLastBuild: true,
 				 keepAll: true,
-				 reportDir: 'reports',
+				 reportDir: '',
 				 reportFiles: 'index.html',
-				 reportName: 'My Reports',
-				 reportTitles: 'The Report'])
+				 reportName: 'Code coverage',
+				 reportTitles: 'Code coverage'])
             }
         }
+		stage ("search text")
+		{
+		 publishers {
+			findText {
+			  textFinders {
+				textFinder {
+				  regexp 'html'
+				  fileSet 'index.html'
+				  changeCondition 'MATCH_FOUND'
+				  alsoCheckConsoleOutput true
+				  buildResult 'UNSTABLE'
+				}
+			  }
+			}
+		  }
+		}
 		stage ('Download lcov converter') {
             steps {
                 bat "curl -O https://raw.githubusercontent.com/eriwen/lcov-to-cobertura-xml/master/lcov_cobertura/lcov_cobertura.py"
