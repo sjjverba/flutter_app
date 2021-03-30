@@ -24,16 +24,15 @@ pipeline {
 							returnStdout: true
 						).trim()
 						
-						TEST_FAILED = bat (
+						TEST_RESULT = bat (
 							script: 'echo 0',
 							returnStdout: true
 						).trim()
-						echo "${TEST_SUCCESS}"
-						if(TEST_FAILED != TEST_SUCCESS)
+						
+						if(TEST_RESULT != TEST_SUCCESS)
 						{
 							error("Build failed because of this and that..")
-						}
-						
+						}						
 					}
                 }
             }
