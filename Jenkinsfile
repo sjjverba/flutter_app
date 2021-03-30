@@ -15,19 +15,17 @@ pipeline {
         }
 		stage ("search text")
 		{
-		steps{
-		
-		 publishers {
-			findText {
-			  textFinders {
-				textFinder {
-				  regexp: 'html'
-				  fileSet: 'index.html'
+			steps{
+				findText {
+				  textFinders {
+					textFinder {
+					  regexp: 'html'
+					  fileSet: 'index.html'
+					}
+				  }
 				}
-			  }
+			  
 			}
-		  }
-		  }
 		}
 		stage ('Download lcov converter') {
             steps {
