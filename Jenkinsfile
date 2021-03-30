@@ -28,7 +28,7 @@ pipeline {
 						{
 							error("Build failed because of this and that..")
 						}
-						error("no")
+						
 					}
                 }
             }
