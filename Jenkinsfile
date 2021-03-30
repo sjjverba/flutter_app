@@ -15,7 +15,7 @@ pipeline {
         }
 		stage ("search text")
 		{
-		 publishers {
+		
 			findText {
 			  textFinders {
 				textFinder {
@@ -26,7 +26,7 @@ pipeline {
 				  buildResult 'UNSTABLE'
 				}
 			  }
-			}
+			
 		  }
 		}
 		stage ('Download lcov converter') {
