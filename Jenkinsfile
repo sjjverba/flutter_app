@@ -4,6 +4,13 @@ pipeline {
         stage ('Checkout') {
             steps {
                 checkout scm
+				publishHTML (target : [allowMissing: false,
+				 alwaysLinkToLastBuild: true,
+				 keepAll: true,
+				 reportDir: 'reports',
+				 reportFiles: 'myreport.html',
+				 reportName: 'My Reports',
+				 reportTitles: 'The Report'])
             }
         }
 		stage ('Download lcov converter') {
@@ -27,15 +34,6 @@ pipeline {
                     step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage.xml'])
                 }
             }
-        }
-		stage('Results') {
-		publishHTML([allowMissing: false,
-		 alwaysLinkToLastBuild: true,
-		 keepAll: true,
-		 reportFiles: 'index.html',
-		 reportName: 'Docs Loadtest Dashboard'
-		 ])
-		}
-		
+        }		
     }
 }
