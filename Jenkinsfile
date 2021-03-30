@@ -13,6 +13,7 @@ pipeline {
         }
         stage ('Flutter Doctor') {
             steps {
+				print "DEBUG: parameter foo ="
                 bat "flutter doctor"
             }
         }
