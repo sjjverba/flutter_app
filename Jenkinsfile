@@ -23,6 +23,7 @@ pipeline {
 							script: 'echo 1',
 							returnStdout: true
 						).trim()
+						echo "${TEST_SUCCESS}"
 						if(TEST_SUCCESS != '1')
 						{
 							error("Build failed because of this and that..")
