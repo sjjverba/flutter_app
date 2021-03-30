@@ -31,7 +31,7 @@ pipeline {
 						
 						if(TEST_RESULT != TEST_SUCCESS)
 						{
-							error("Build failed because of this and that..")
+							error("Some UnitTests failed")
 						}						
 					}
                 }
