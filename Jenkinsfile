@@ -6,6 +6,19 @@ pipeline {
                 checkout scm
             }
         }
+		stage ('test-html')
+		{
+		 steps {
+                 publishHTML target: [
+				  allowMissing: false,
+				  alwaysLinkToLastBuild: false,
+				  keepAll: true,
+				  reportDir: 'coverage',
+				  reportFiles: 'index.html',
+				  reportName: 'Flutter Report'
+				]
+            }
+		}
 		stage ('Download lcov converter') {
             steps {
                 bat "curl -O https://raw.githubusercontent.com/eriwen/lcov-to-cobertura-xml/master/lcov_cobertura/lcov_cobertura.py"
