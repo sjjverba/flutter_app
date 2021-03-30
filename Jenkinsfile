@@ -24,7 +24,7 @@ pipeline {
 							returnStdout: true
 						).trim()
 						echo "${TEST_SUCCESS}"
-						if('1' == '1')
+						if(TEST_SUCCESS == TEST_SUCCESS)
 						{
 							error("Build failed because of this and that..")
 						}
