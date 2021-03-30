@@ -21,11 +21,11 @@ pipeline {
 			findText {
 			  textFinders {
 				textFinder {
-				  regexp 'html'
-				  fileSet 'index.html'
-				  changeCondition 'MATCH_FOUND'
-				  alsoCheckConsoleOutput true
-				  buildResult 'UNSTABLE'
+				  regexp: 'html'
+				  fileSet: 'index.html'
+				  changeCondition: 'MATCH_FOUND'
+				  alsoCheckConsoleOutput: true
+				  buildResult: 'UNSTABLE'
 				}
 			  }
 			}
@@ -39,7 +39,6 @@ pipeline {
         }
         stage ('Flutter Doctor') {
             steps {
-				print "DEBUG: parameter foo ="
                 bat "flutter doctor"
             }
         }
