@@ -23,9 +23,6 @@ pipeline {
 				textFinder {
 				  regexp: 'html'
 				  fileSet: 'index.html'
-				  changeCondition: 'MATCH_FOUND'
-				  alsoCheckConsoleOutput: true
-				  buildResult: 'UNSTABLE'
 				}
 			  }
 			}
