@@ -20,7 +20,7 @@ pipeline {
 					script
 					{
 						TEST_SUCCESS = bat (
-							script: 'echo 1',
+							script: 'echo "1"',
 							returnStdout: true
 						).trim()
 						echo "${TEST_SUCCESS}"
