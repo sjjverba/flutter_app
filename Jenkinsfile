@@ -28,8 +28,6 @@ pipeline {
                 }
             }
         }
-
-		build job: 'Docs_LoadTest'
 		stage('Results') {
 		publishHTML([allowMissing: false,
 		 alwaysLinkToLastBuild: true,
