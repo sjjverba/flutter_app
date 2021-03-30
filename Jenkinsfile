@@ -16,7 +16,7 @@ pipeline {
 		stage ("search text")
 		{
 			steps{
-				findText(textFinders: [textFinder(regexp: '.*', fileSet: 'index.html')])
+				findText(textFinders: [textFinder(regexp: 'htmltest', fileSet: 'index.html')])
 			}
 		}
 		stage ('Download lcov converter') {
