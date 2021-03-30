@@ -25,7 +25,7 @@ pipeline {
 						).trim()
 						
 						TEST_FAILED = bat (
-							script: 'echo 1',
+							script: 'echo 0',
 							returnStdout: true
 						).trim()
 						echo "${TEST_SUCCESS}"
