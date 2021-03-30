@@ -6,18 +6,6 @@ pipeline {
                 checkout scm
             }
         }
-		stage ('test-html') {
-			steps {
-                 publishHTML([
-				  allowMissing: false,
-				  alwaysLinkToLastBuild: false,
-				  keepAll: true,
-				  reportDir: 'coverage',
-				  reportFiles: 'index.html',
-				  reportName: 'Flutter Report'
-				])
-            }
-		}
 		stage ('Download lcov converter') {
             steps {
                 bat "curl -O https://raw.githubusercontent.com/eriwen/lcov-to-cobertura-xml/master/lcov_cobertura/lcov_cobertura.py"
@@ -40,6 +28,17 @@ pipeline {
                 }
             }
         }
-       
+		node {
+			build job: 'Docs_LoadTest'
+			stage('Results') {
+			publishHTML([allowMissing: false,
+			 alwaysLinkToLastBuild: true,
+			 keepAll: true,
+			 reportFiles: 'index.html',
+			 reportName: 'Docs Loadtest Dashboard'
+			 ])
+
+			}
+		}
     }
 }
