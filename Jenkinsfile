@@ -28,17 +28,16 @@ pipeline {
                 }
             }
         }
-		node {
-			build job: 'Docs_LoadTest'
-			stage('Results') {
-			publishHTML([allowMissing: false,
-			 alwaysLinkToLastBuild: true,
-			 keepAll: true,
-			 reportFiles: 'index.html',
-			 reportName: 'Docs Loadtest Dashboard'
-			 ])
 
-			}
+		build job: 'Docs_LoadTest'
+		stage('Results') {
+		publishHTML([allowMissing: false,
+		 alwaysLinkToLastBuild: true,
+		 keepAll: true,
+		 reportFiles: 'index.html',
+		 reportName: 'Docs Loadtest Dashboard'
+		 ])
 		}
+		
     }
 }
