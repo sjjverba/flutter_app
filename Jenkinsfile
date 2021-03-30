@@ -6,17 +6,16 @@ pipeline {
                 checkout scm
             }
         }
-		stage ('test-html')
-		{
-		 steps {
-                 publishHTML target: [
+		stage ('test-html') {
+			steps {
+                 publishHTML([
 				  allowMissing: false,
 				  alwaysLinkToLastBuild: false,
 				  keepAll: true,
 				  reportDir: 'coverage',
 				  reportFiles: 'index.html',
 				  reportName: 'Flutter Report'
-				]
+				])
             }
 		}
 		stage ('Download lcov converter') {
