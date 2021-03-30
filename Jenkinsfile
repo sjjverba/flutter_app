@@ -4,24 +4,6 @@ pipeline {
         stage ('Checkout') {
             steps {
                 checkout scm
-				publishHTML (target : [allowMissing: false,
-				 alwaysLinkToLastBuild: true,
-				 keepAll: true,
-				 reportDir: '',
-				 reportFiles: 'index.html',
-				 reportName: 'Code coverage',
-				 reportTitles: 'Code coverage'])
-            }
-        }
-		stage ("search text")
-		{
-			steps{
-				findText(textFinders: [textFinder(regexp: 'html', fileSet: 'index.html')])
-			}
-		}
-		stage ('Download lcov converter') {
-            steps {
-                bat "curl -O https://raw.githubusercontent.com/eriwen/lcov-to-cobertura-xml/master/lcov_cobertura/lcov_cobertura.py"
             }
         }
         stage ('Flutter Doctor') {
@@ -29,16 +11,25 @@ pipeline {
                 bat "flutter doctor"
             }
         }
-        stage('Test') {
+        stage('Tests') {
             steps {
-                bat "flutter test --coverage"
+                bat "flutter test >> result.txt"
             }
             post {
                 always {
-                    bat "python lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml"
-                    step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage.xml'])
+					script
+					{
+						TEST_SUCCESS = bat (
+							script: 'echo 1',
+							returnStdout: true
+						).trim()
+						if(TEST_SUCCESS != '1')
+						{
+							error("Build failed because of this and that..")
+						}
+					}
                 }
             }
-        }		
+        }
     }
 }
