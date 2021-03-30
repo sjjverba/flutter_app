@@ -23,8 +23,13 @@ pipeline {
 							script: 'echo 1',
 							returnStdout: true
 						).trim()
+						
+						TEST_FAILED = bat (
+							script: 'echo 1',
+							returnStdout: true
+						).trim()
 						echo "${TEST_SUCCESS}"
-						if('1' == TEST_SUCCESS)
+						if(TEST_FAILED == TEST_SUCCESS)
 						{
 							error("Build failed because of this and that..")
 						}
