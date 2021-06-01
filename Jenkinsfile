@@ -1,7 +1,5 @@
 pipeline {
-	agent {
-        any
-    }
+	agent any
     stages {
         stage ('Checkout') {
             steps {
@@ -10,7 +8,7 @@ pipeline {
         }
         stage ('Flutter Doctor') {
             steps {
-                bat "flutter doctor"
+                bat "docker.cmd"
             }
         }
         stage('Tests') {
