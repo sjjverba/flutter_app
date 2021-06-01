@@ -1,3 +1,4 @@
-FROM "cirrusci/flutter"
-
-CMD ["flutter","doctor"]
+FROM cirrusci/flutter
+WORKDIR /home/app
+COPY . .
+CMD flutter test
