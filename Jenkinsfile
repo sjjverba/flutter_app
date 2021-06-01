@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('Flutter Doctor') {
             steps {
-                bat "docker.cmd"
+                bat "run_docker.cmd"
             }
         }
         stage('Tests') {
