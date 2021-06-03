@@ -6,18 +6,14 @@ pipeline {
                 checkout scm
             }
         }
-        stage ('Flutter Doctor') {
+        stage ('Run Docker') {
             steps {
                 sh "sh run_docker.sh"
             }
         }
-        stage('Tests') {
+        stage('Check test result') {
             steps {
-                bat "flutter test >> result.txt"
-            }
-            post {
-                always {
-					script
+               script
 					{
 						TEST_SUCCESS = bat (
 							script: 'echo 1',
@@ -34,7 +30,6 @@ pipeline {
 							error("Some UnitTests failed")
 						}						
 					}
-                }
             }
         }
     }
