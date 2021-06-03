@@ -15,13 +15,13 @@ pipeline {
             steps {
                script
 					{
-						TEST_SUCCESS = bat (
+						TEST_SUCCESS = sh (
 							script: 'echo 1',
 							returnStdout: true
 						).trim()
 						
-						TEST_RESULT = bat (
-							script: 'echo 0',
+						TEST_RESULT = sh (
+							script: 'grep "All tests passed!" result.txt | wc -l',
 							returnStdout: true
 						).trim()
 						
