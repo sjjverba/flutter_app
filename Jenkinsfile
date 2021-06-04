@@ -16,7 +16,7 @@ pipeline {
 				}
 				else
 				{
-					sh "call run_docker.cmd"
+					bat "run_docker.cmd"
 				}
 				}
             }
