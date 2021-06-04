@@ -56,7 +56,7 @@ pipeline {
 					).trim()
 					
 					TEST_RESULT = bat (
-						script: 'grep "All tests passed!" result.txt | wc -l',
+						script: 'find /C "@" < "result.txt"',
 						returnStdout: true
 					).trim()
 					
