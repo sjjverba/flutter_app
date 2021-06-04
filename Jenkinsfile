@@ -25,6 +25,9 @@ pipeline {
 							returnStdout: true
 						).trim()
 						
+						echo "$TEST_RESULT"
+						echo TEST_RESULT
+						
 						if(TEST_RESULT != TEST_SUCCESS)
 						{
 							error("Some UnitTests failed")
