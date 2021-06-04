@@ -38,9 +38,6 @@ pipeline {
 						returnStdout: true
 					).trim()
 					
-					echo "$TEST_RESULT"
-					echo TEST_RESULT
-					
 					if(TEST_RESULT != TEST_SUCCESS)
 					{
 						error("Some UnitTests failed")
@@ -56,7 +53,7 @@ pipeline {
 					).trim()
 					
 					TEST_RESULT = bat (
-						script: 'find /C "@" < "result.txt"',
+						script: 'find /C "All test passed!" < "result.txt"',
 						returnStdout: true
 					).trim()
 					
