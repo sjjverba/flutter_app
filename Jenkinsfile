@@ -8,12 +8,21 @@ pipeline {
         }
         stage ('Run Docker') {
             steps {
-                sh "sh run_docker.sh"
+				if(isUnix())
+				{
+					sh "sh run_docker.sh"
+				}
+				else
+				{
+					sh "call run_docker.cmd"
+				}
             }
         }
         stage('Check test result') {
             steps {
-               script
+				if(isUnix())
+				{
+					script
 					{
 						TEST_SUCCESS = sh (
 							script: 'echo 1',
@@ -33,6 +42,28 @@ pipeline {
 							error("Some UnitTests failed")
 						}						
 					}
+				}
+				else
+				{
+					script
+					{
+						TEST_SUCCESS = bat (
+							script: 'echo 1',
+							returnStdout: true
+						).trim()
+						
+						TEST_RESULT = bat (
+							script: 'grep "All tests passed!" result.txt | wc -l',
+							returnStdout: true
+						).trim()
+						
+						if(TEST_RESULT != TEST_SUCCESS)
+						{
+							error("Some UnitTests failed")
+						}						
+					}
+				}
+               
             }
         }
     }
